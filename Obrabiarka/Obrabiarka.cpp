@@ -21,13 +21,52 @@ Obrabiarka::Obrabiarka(int _iRozmiar) {
 
 Obrabiarka::Obrabiarka(const Obrabiarka& _oObrabiarka2) {
 	iRozmiar = _oObrabiarka2.iRozmiar;
-	Czas* pTemp;
 
 	inicjalizujTablice();
 
 	for (int i = 0; i < iRozmiar; ++i) {
 		pZestawienie[i] = _oObrabiarka2.pZestawienie[i];
 	}
+}
+
+Obrabiarka Obrabiarka::kopiuj(Czas _cZakres) {
+	Obrabiarka oTemp;
+	for (int i = 0; i < iRozmiar; i++)
+	{
+		if ((oTemp.zsumujCzasy() + (*this)[i]) <= _cZakres) {
+			oTemp.dodajCzas((*this)[i]);
+		}
+		else return oTemp;
+	}
+
+	return oTemp;
+}
+
+Obrabiarka Obrabiarka::kopiuj(int _iN) {
+	Obrabiarka oTemp(*this);
+
+	if (_iN > iRozmiar) {
+		cout << "Podana ilosc czasow jest wieksza od tej w zestawanieniu. Zwrocone zostanie cale zestawienie.\n";
+		return oTemp;
+	}
+	if (_iN < 0) {
+		_iN = iRozmiar + _iN;
+	}
+	if (_iN <= 0) {
+		cout << "Nieprawidlowa ilosc czasow.\n";
+		return oTemp;
+	}
+
+	Czas* pTemp = (Czas*)realloc(oTemp.pZestawienie, _iN * sizeof(*pTemp));
+	if (!pTemp) {
+		cout << "Blad podczas przydzielania pamieci.\n";
+		return oTemp;
+	}
+
+	oTemp.iRozmiar = _iN;
+	oTemp.pZestawienie = pTemp;
+
+	return oTemp;
 }
 
 void Obrabiarka::inicjalizujTablice() {
@@ -41,7 +80,11 @@ void Obrabiarka::inicjalizujTablice() {
 	pZestawienie = iRozmiar == 0 ? nullptr : _pWskaznik;
 }
 
-void Obrabiarka::dodajCzas(Czas& _cNowyCzas) {
+int Obrabiarka::GetRozmiar() {
+	return iRozmiar;
+}
+
+void Obrabiarka::dodajCzas(Czas _cNowyCzas) {
 	Czas* temp = (Czas*)realloc(pZestawienie, (iRozmiar+1)*sizeof(*temp));
 
 	if (!temp) {
@@ -71,7 +114,7 @@ Czas Obrabiarka::zsumujCzasy() {
 }
 
 Obrabiarka::~Obrabiarka() {
-	free(pZestawienie);
+	if (pZestawienie) free(pZestawienie);
 }
 
 Czas Obrabiarka::operator[](int _iIndeks) {
@@ -86,4 +129,10 @@ Czas Obrabiarka::operator[](int _iIndeks) {
 	}
 
 	return pZestawienie[_iIndeks];
+}
+
+Obrabiarka& Obrabiarka::operator=(Obrabiarka _oObrabiarka2) {
+	swap(*this, _oObrabiarka2);
+
+	return *this;
 }

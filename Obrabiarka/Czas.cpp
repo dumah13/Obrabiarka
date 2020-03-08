@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Czas.h"
 
 Czas::Czas(int _iSekundy, int _iMinuty, int _iGodziny) {
@@ -15,10 +16,10 @@ int Czas::znormalizujCzas(int& _iCzas) {
 
 void Czas::setSekundy(int _iSekundy) {
 	if (_iSekundy < 0) {
-		std::cout << "Czas nie moze byc mniejszy od zera.\n" << "Podany czas: " << _iSekundy << "s\n";
+		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0.\n" << "Podany czas: " << _iSekundy << " s\n";
 	}
 	else if (_iSekundy >= 60) {
-		if ((iMinuty = znormalizujCzas(_iSekundy)) >= 60) iGodziny = znormalizujCzas(iMinuty);
+		if ((iMinuty += znormalizujCzas(_iSekundy)) >= 60) iGodziny += znormalizujCzas(iMinuty);
 		iSekundy = _iSekundy;
 	}
 	else iSekundy = _iSekundy;
@@ -30,10 +31,10 @@ int Czas::getSekundy() {
 
 void Czas::setMinuty(int _iMinuty) {
 	if (_iMinuty < 0) {
-		std::cout << "Czas nie moze byc mniejszy od zera.\n" << "Podany czas: " << _iMinuty << "s\n";
+		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0\n" << "Podany czas: " << _iMinuty << " m\n";
 	}
 	else if (_iMinuty >= 60) {
-		iGodziny = znormalizujCzas(_iMinuty);
+		iGodziny += znormalizujCzas(_iMinuty);
 		iMinuty = _iMinuty;
 	}
 	else iMinuty = _iMinuty;
@@ -45,7 +46,7 @@ int Czas::getMinuty() {
 
 void Czas::setGodziny(int _iGodziny) {
 	if (_iGodziny < 0) {
-		std::cout << "Czas nie moze byc mniejszy od zera.\n" << "Podany czas: " << _iGodziny << "s\n";
+		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0.\n" << "Podany czas: " << _iGodziny << "s g\n";
 	}
 	else iGodziny = _iGodziny;
 }
@@ -55,7 +56,9 @@ int Czas::getGodziny() {
 }
 
 void Czas::wypiszCzas() {
-	std::cout << "Sekundy: " << iSekundy << " Minuty: " << iMinuty << " Godziny: " << iGodziny << std::endl;
+	std::cout << "Sekundy: " << std::setw(2) << iSekundy << " Minuty: " << 
+		std::setw(2) << iMinuty << " Godziny: " << 
+		std::setw(2) << iGodziny << std::endl;
 }
 
 int Czas::sprowadzDoSekund() {
@@ -72,7 +75,7 @@ Czas Czas::operator+(int _iSekundy) {
 	return temp;
 }
 
-Czas Czas::operator+(Czas& _cCzas) {
+Czas Czas::operator+(Czas _cCzas) {
 	Czas temp;
 	temp.setSekundy(sprowadzDoSekund() + _cCzas.sprowadzDoSekund());
 	return temp;

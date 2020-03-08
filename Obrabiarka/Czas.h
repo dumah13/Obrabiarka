@@ -5,6 +5,7 @@ private:
 	int iSekundy;
 	int iMinuty;
 	int iGodziny;
+
 	int znormalizujCzas(int& _iCzas);
 	int sprowadzDoSekund();
 public:
@@ -30,7 +31,7 @@ public:
 
 	Czas operator+(int _iSekundy);
 	Czas& operator++();
-	Czas operator+(Czas& _cCzas);
+	Czas operator+(Czas _cCzas);
 
 	//Definicje operatorów logicznych
 

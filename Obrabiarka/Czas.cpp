@@ -19,10 +19,14 @@ void Czas::setSekundy(int _iSekundy) {
 		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0.\n" << "Podany czas: " << _iSekundy << " s\n";
 	}
 	else if (_iSekundy >= 60) {
-		if ((iMinuty += znormalizujCzas(_iSekundy)) >= 60) iGodziny += znormalizujCzas(iMinuty);
+		if ((iMinuty = znormalizujCzas(_iSekundy)) >= 60) iGodziny = znormalizujCzas(iMinuty);
 		iSekundy = _iSekundy;
 	}
 	else iSekundy = _iSekundy;
+}
+
+void Czas::setCzas(int _iSekundy, int _iMinuty, int _iGodziny) {
+	setSekundy(_iSekundy + _iMinuty*60 + _iGodziny*3600);
 }
 
 int Czas::getSekundy() {
@@ -79,6 +83,11 @@ Czas Czas::operator+(Czas _cCzas) {
 	Czas temp;
 	temp.setSekundy(sprowadzDoSekund() + _cCzas.sprowadzDoSekund());
 	return temp;
+}
+
+Czas& Czas::operator+=(int _iSekundy) {
+	this->setSekundy(sprowadzDoSekund() + _iSekundy);
+	return *this;
 }
 
 Czas& Czas::operator++() {

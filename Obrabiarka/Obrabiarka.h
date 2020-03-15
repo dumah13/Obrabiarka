@@ -8,6 +8,7 @@ private:
 	int iRozmiar;
 	Czas* pZestawienie;
 
+	void zmienTablice(int _iNowyRozmiar);
 	void inicjalizujTablice();
 public:
 	//Konstruktor (domyœlny)

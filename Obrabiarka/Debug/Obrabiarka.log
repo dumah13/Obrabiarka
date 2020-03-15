@@ -1,3 +1,3 @@
 ﻿  Źródło.cpp
-C:\Users\Student247291\source\repos\Obrabiarka\Obrabiarka\Źródło.cpp(127,12): warning C4244:  "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\Student247291\source\repos\Obrabiarka\Obrabiarka\Źródło.cpp(129,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   Obrabiarka.vcxproj -> C:\Users\Student247291\source\repos\Obrabiarka\Debug\Obrabiarka.exe

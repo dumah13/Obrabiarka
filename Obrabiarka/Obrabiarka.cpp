@@ -53,31 +53,36 @@ Obrabiarka Obrabiarka::kopiuj(int _iN) {
 		_iN = iRozmiar + _iN;
 	}
 	if (_iN <= 0) {
-		cout << "Nieprawidlowa ilosc czasow.\n";
-		return oTemp;
+		cout << "Nieprawidlowa ilosc czasow. Zwracam puste zestawienie.\n";
+		Obrabiarka oPusty;
+		return oPusty;
 	}
 
-	Czas* pTemp = (Czas*)realloc(oTemp.pZestawienie, _iN * sizeof(*pTemp));
-	if (!pTemp) {
-		cout << "Blad podczas przydzielania pamieci.\n";
-		return oTemp;
-	}
-
-	oTemp.iRozmiar = _iN;
-	oTemp.pZestawienie = pTemp;
+	oTemp.zmienTablice(_iN);
 
 	return oTemp;
 }
 
 void Obrabiarka::inicjalizujTablice() {
-	Czas* _pWskaznik;
 
-	if (!(_pWskaznik = (Czas*) malloc(iRozmiar * sizeof(*pZestawienie)))) {
-		iRozmiar = 0;
-		cout << "Blad podczas przydzielania pamieci.\n";
+	if (!iRozmiar) {
+		pZestawienie = nullptr;
 	}
 
-	pZestawienie = iRozmiar == 0 ? nullptr : _pWskaznik;
+	pZestawienie = new Czas[iRozmiar];
+}
+
+void Obrabiarka::zmienTablice(int _iNowyRozmiar) {
+	int indeksKopiowania = iRozmiar >= _iNowyRozmiar ? _iNowyRozmiar : iRozmiar;
+	Czas* pKopia = new Czas[_iNowyRozmiar];
+
+	for (int j = 0; j < indeksKopiowania; j++) {
+			pKopia[j] = pZestawienie[j];
+	}
+
+	iRozmiar = _iNowyRozmiar;
+	delete[] pZestawienie;
+	pZestawienie = pKopia;
 }
 
 int Obrabiarka::GetRozmiar() {
@@ -85,16 +90,7 @@ int Obrabiarka::GetRozmiar() {
 }
 
 void Obrabiarka::dodajCzas(Czas _cNowyCzas) {
-	Czas* temp = (Czas*)realloc(pZestawienie, (iRozmiar+1)*sizeof(*temp));
-
-	if (!temp) {
-		cout << "Blad podczas przydzielania pamieci.\n";
-		return;
-	}
-	pZestawienie = temp;
-
-	++iRozmiar;
-
+	zmienTablice(++iRozmiar);
 	pZestawienie[iRozmiar - 1] = _cNowyCzas;
 }
 
@@ -114,7 +110,7 @@ Czas Obrabiarka::zsumujCzasy() {
 }
 
 Obrabiarka::~Obrabiarka() {
-	if (pZestawienie) free(pZestawienie);
+	if (pZestawienie) delete[] pZestawienie;
 }
 
 Czas Obrabiarka::operator[](int _iIndeks) {

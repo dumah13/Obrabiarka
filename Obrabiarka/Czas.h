@@ -12,6 +12,8 @@ public:
 	//Konstruktor domyœlny/przeci¹¿ony
 	Czas(int _iSekundy = 0, int _iMinuty = 0, int _iGodziny = 0);
 
+	//Setter przeci¹¿ony dla wszystkich atrybutów
+	void setCzas(int _iSekundy = 0, int _iMinuty = 0, int _iGodziny = 0);
 	//Setter dla atrybutu iSekundy
 	void setSekundy(int _iSekundy);
 	//Getter dla atrybutu iSekundy
@@ -30,6 +32,7 @@ public:
 	//Definicje operatorów algebraicznych
 
 	Czas operator+(int _iSekundy);
+	Czas& operator+=(int _iSekundy);
 	Czas& operator++();
 	Czas operator+(Czas _cCzas);
 

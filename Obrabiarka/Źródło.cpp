@@ -99,8 +99,9 @@ int main(){
 
 	for (int i = 0; i < 1000000; i++)
 	{
+		Czas testCzas(5, 5, 0);
 		obrabiarka1 = obrabiarka3.kopiuj(5);
-		obrabiarka2 = obrabiarka2.kopiuj(4);
+		obrabiarka2 = obrabiarka2.kopiuj(testCzas);
 	}
 
 	obrabiarka1.wypiszCzasy();
@@ -127,6 +128,14 @@ int main(){
 
 	srand(time(0));
 
+	czas1.setCzas(0);
+	czas1.wypiszCzas();
+	czas1.setCzas(1, 4);
+	czas1.wypiszCzas();
+	czas1.setCzas(60, 9, 10);
+	czas1.wypiszCzas();
+
+	czas1 += 100;
 #pragma endregion
 
 #pragma region PetlaProgramu
@@ -190,20 +199,25 @@ int main(){
 
 			iKrokProgramu = 0;
 
+			if (!iIloscCzasowDoWysw) {
+				iKrokProgramu = 0;
+				continue;
+			}
 			cout << flush;
 			system("cls");
 
 			break;
 		case 2:
+			int sekundy;
+			int minuty;
+			int godziny;
 			cout << "Podaj liczbe godzin" << endl;
-			cin >> i;
-			cZakresCzasu.setGodziny(i);
+			cin >> godziny;
 			cout << "Podaj liczbe minut" << endl;
-			cin >> i;
-			cZakresCzasu.setMinuty(i);
+			cin >> minuty;
 			cout << "Podaj liczbe sekund" << endl;
-			cin >> i;
-			cZakresCzasu.setSekundy(i);
+			cin >> sekundy;
+			cZakresCzasu.setCzas(sekundy,minuty,godziny);
 
 			obrabiarkiMenu[iIloscObrabiarek] = obrabiarkiMenu[iWybranaObrabiarka].kopiuj(cZakresCzasu);
 			iWybranaObrabiarka = iIloscObrabiarek;

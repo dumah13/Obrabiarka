@@ -26,6 +26,19 @@ void Czas::setSekundy(int _iSekundy) {
 }
 
 void Czas::setCzas(int _iSekundy, int _iMinuty, int _iGodziny) {
+	if (_iSekundy < 0) {
+		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0 do sekund.\n" << "Podany czas: " << _iSekundy << " s\n";
+		_iSekundy = 0;
+	}
+	if (_iMinuty < 0) {
+		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0 do minut.\n" << "Podany czas: " << _iMinuty << " m\n";
+		_iMinuty = 0;
+	}
+	if (_iGodziny < 0) {
+		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0 do godzin.\n" << "Podany czas: " << _iGodziny << " g\n";
+		_iGodziny = 0;
+	}
+
 	setSekundy(_iSekundy + _iMinuty*60 + _iGodziny*3600);
 }
 
@@ -49,8 +62,8 @@ int Czas::getMinuty() {
 }
 
 void Czas::setGodziny(int _iGodziny) {
-	if (_iGodziny < 0) {
-		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0.\n" << "Podany czas: " << _iGodziny << "s g\n";
+	if (_iGodziny < 0) { 
+		std::cout << "Czas nie moze byc mniejszy od zera. Wpisuje 0.\n" << "Podany czas: " << _iGodziny << " g\n";
 	}
 	else iGodziny = _iGodziny;
 }

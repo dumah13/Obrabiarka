@@ -53,7 +53,7 @@ Obrabiarka Obrabiarka::kopiuj(int _iN) {
 		_iN = iRozmiar + _iN;
 	}
 	if (_iN <= 0) {
-		cout << "Nieprawidlowa ilosc czasow. Zwracam puste zestawienie.\n";
+		cout << "Nieprawidlowa ilosc czasow. Zwrocone zostanie puste zestawienie.\n";
 		Obrabiarka oPusty;
 		return oPusty;
 	}
@@ -63,12 +63,8 @@ Obrabiarka Obrabiarka::kopiuj(int _iN) {
 	return oTemp;
 }
 
-void Obrabiarka::inicjalizujTablice() {
-
-	if (!iRozmiar) {
-		pZestawienie = nullptr;
-	}
-
+void Obrabiarka::inicjalizujTablice() 
+{
 	pZestawienie = new Czas[iRozmiar];
 }
 
@@ -95,6 +91,9 @@ void Obrabiarka::dodajCzas(Czas _cNowyCzas) {
 }
 
 void Obrabiarka::wypiszCzasy() {
+	if (!iRozmiar) {
+		cout << "Puste zestawienie\n";
+	}
 	for (int i = 0; i < iRozmiar; ++i) {
 		(*this)[i].wypiszCzas();
 	}
@@ -118,8 +117,8 @@ Czas Obrabiarka::operator[](int _iIndeks) {
 		_iIndeks = iRozmiar + _iIndeks;
 	}
 
-	if (_iIndeks >= iRozmiar) {
-		cout << "Indeks poza granicami zestawienia.\n";
+	if (_iIndeks >= iRozmiar || _iIndeks < 0) {
+		cout << "Indeks poza granicami zestawienia. Zostanie zwrocony pusty czas.\n";
 		Czas TempCzas;
 		return TempCzas;
 	}

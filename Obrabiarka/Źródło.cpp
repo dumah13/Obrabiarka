@@ -7,147 +7,159 @@
 
 using namespace std;
 
+//Funkcja pomocnicza do generowania losowej liczby z podanego zakresu
 int losowaZakres(int _iDolny, int _iGorny) {
 	return _iDolny + rand() % (_iGorny - _iDolny + 1);
 }
 
 int main(){
+	//Maksymalna liczba kopii obrabiarek do stworzenia w programie.
 	const int iMaksymalnaLiczbaObrabiarek = 20;
 
+	//Testowanie metod i operatorów klas Czas i Obrabiarka - mo¿na ca³oœæ zostawiæ zakomentowan¹, albo u¿yæ do sprawdzenia. - ETAP 1.4, 3.4
 #pragma region Testy
-	Czas czas1;
-	Czas czas2;
-	Czas czas3(10, 2, 3);
-	Czas czas4(1);
-	Czas czas5(1, 2);
+	////ETAP 1.4
 
-	czas1 = czas2;
+	//Czas czas1;
+	//Czas czas2;
+	//Czas czas3(10, 2, 3);
+	//Czas czas4(1);
+	//Czas czas5(1, 2);
 
-	czas3.wypiszCzas();
-	czas4.wypiszCzas();
-	czas5.wypiszCzas();
+	//czas1 = czas2;
 
-	czas1.wypiszCzas();
-	czas2.wypiszCzas();
+	//czas3.wypiszCzas();
+	//czas4.wypiszCzas();
+	//czas5.wypiszCzas();
 
-	czas1.setGodziny(2);
-	czas1.setMinuty(5);
-	czas1.setSekundy(58);
+	//czas1.wypiszCzas();
+	//czas2.wypiszCzas();
 
-	cout << endl << czas1.getSekundy() << endl;
-	cout << endl << czas1.getMinuty() << endl;
-	cout << endl << czas1.getGodziny() << endl;
+	//czas1.setGodziny(2);
+	//czas1.setMinuty(5);
+	//czas1.setSekundy(58);
 
-	czas1.wypiszCzas();
+	//cout << endl << czas1.getSekundy() << endl;
+	//cout << endl << czas1.getMinuty() << endl;
+	//cout << endl << czas1.getGodziny() << endl;
 
-	czas2.setSekundy(95239);
+	//czas1.wypiszCzas();
 
-	cout << endl << czas2.getSekundy() << endl;
-	cout << endl << czas2.getMinuty() << endl;
-	cout << endl << czas2.getGodziny() << endl;
+	//czas2.setSekundy(95239);
 
-	czas2.wypiszCzas();
+	//cout << endl << czas2.getSekundy() << endl;
+	//cout << endl << czas2.getMinuty() << endl;
+	//cout << endl << czas2.getGodziny() << endl;
 
-	czas2 = czas1 + czas1 + 3000;
+	//czas2.wypiszCzas();
 
-	cout << endl << (czas2 == czas1) << endl;
-	cout << endl << (czas2 == czas2) << endl;
-	cout << endl << (czas2 >= czas1) << endl;
-	cout << endl << (czas2 > czas1) << endl;
-	cout << endl << (czas2 <= czas1) << endl;
-	cout << endl << (czas2 < czas1) << endl;
-	cout << endl << (czas2 != czas1) << endl;
-	cout << endl << (czas1 != czas1) << endl;
+	//czas2 = czas1 + czas1 + 3000;
 
-	++czas1;
-	++czas1;
+	//cout << endl << (czas2 == czas1) << endl;
+	//cout << endl << (czas2 == czas2) << endl;
+	//cout << endl << (czas2 >= czas1) << endl;
+	//cout << endl << (czas2 > czas1) << endl;
+	//cout << endl << (czas2 <= czas1) << endl;
+	//cout << endl << (czas2 < czas1) << endl;
+	//cout << endl << (czas2 != czas1) << endl;
+	//cout << endl << (czas1 != czas1) << endl;
 
-	Obrabiarka obrabiarka1(5);
-	Obrabiarka obrabiarka2(obrabiarka1);
-	Obrabiarka obrabiarka3;
+	//++czas1;
+	//++czas1;
 
-	obrabiarka3.dodajCzas(czas1);
-	obrabiarka3.dodajCzas(czas2);
-	obrabiarka3.dodajCzas(czas3);
-	obrabiarka3.dodajCzas(czas4);
-	obrabiarka3.dodajCzas(czas5);
+	////ETAP 3.4
+	//Obrabiarka obrabiarka1(5);
+	//Obrabiarka obrabiarka2(obrabiarka1);
+	//Obrabiarka obrabiarka3;
 
-	obrabiarka1.dodajCzas(czas1);
-	obrabiarka2.dodajCzas(czas2);
+	//obrabiarka3.dodajCzas(czas1);
+	//obrabiarka3.dodajCzas(czas2);
+	//obrabiarka3.dodajCzas(czas3);
+	//obrabiarka3.dodajCzas(czas4);
+	//obrabiarka3.dodajCzas(czas5);
 
-	obrabiarka1.wypiszCzasy();
-	obrabiarka2.wypiszCzasy();
-	obrabiarka3.wypiszCzasy();
+	//obrabiarka1.dodajCzas(czas1);
+	//obrabiarka2.dodajCzas(czas2);
 
-	obrabiarka3[5].wypiszCzas();
-	obrabiarka3[4].wypiszCzas();
-	obrabiarka3[-4].wypiszCzas();
+	//obrabiarka1.wypiszCzasy();
+	//obrabiarka2.wypiszCzasy();
+	//obrabiarka3.wypiszCzasy();
 
-	obrabiarka1.zsumujCzasy().wypiszCzas();
-	obrabiarka3.zsumujCzasy().wypiszCzas();
+	//obrabiarka3[5].wypiszCzas();
+	//obrabiarka3[4].wypiszCzas();
+	//obrabiarka3[-4].wypiszCzas();
+	//obrabiarka3[-10].wypiszCzas();
 
-	cout << endl;
+	//obrabiarka1.zsumujCzasy().wypiszCzas();
+	//obrabiarka3.zsumujCzasy().wypiszCzas();
 
-	obrabiarka1 = obrabiarka2;
-	obrabiarka2 = obrabiarka3;
+	//cout << endl;
 
-	obrabiarka1.wypiszCzasy();
-	obrabiarka2.wypiszCzasy();
-	obrabiarka3.wypiszCzasy();
+	//obrabiarka1 = obrabiarka2;
+	//obrabiarka2 = obrabiarka3;
 
-	obrabiarka1 = obrabiarka3.kopiuj(2);
+	//obrabiarka1.wypiszCzasy();
+	//obrabiarka2.wypiszCzasy();
+	//obrabiarka3.wypiszCzasy();
 
-	for (int i = 0; i < 1000000; i++)
-	{
-		Czas testCzas(5, 5, 0);
-		obrabiarka1 = obrabiarka3.kopiuj(5);
-		obrabiarka2 = obrabiarka2.kopiuj(testCzas);
-	}
+	//obrabiarka1 = obrabiarka3.kopiuj(2);
 
-	obrabiarka1.wypiszCzasy();
-	obrabiarka2.wypiszCzasy();
-	obrabiarka3.wypiszCzasy();
+	//for (int i = 0; i < 100000; i++)
+	//{
+	//	Czas testCzas(5, 5, 5);
+	//	obrabiarka1 = obrabiarka3.kopiuj(5);
+	//	obrabiarka2 = obrabiarka2.kopiuj(testCzas);
+	//}
 
-	obrabiarka2 = obrabiarka2.kopiuj(-2);
-	obrabiarka2.wypiszCzasy();
+	//obrabiarka1.wypiszCzasy();
+	//obrabiarka2.wypiszCzasy();
+	//obrabiarka3.wypiszCzasy();
 
-	Czas zakres1(0, 10, 10);
-	Czas zakres2(0, 0, 5);
+	//obrabiarka2 = obrabiarka2.kopiuj(-2);
+	//obrabiarka2.wypiszCzasy();
 
-	cout << "Test kopiwoania 2 \n";
-	Obrabiarka obrabiarka4 = obrabiarka1.kopiuj(zakres1);
-	obrabiarka4.wypiszCzasy();
-	obrabiarka4 = obrabiarka1.kopiuj(zakres2);
-	obrabiarka4.wypiszCzasy();
+	//Czas zakres1(0, 10, 10);
+	//Czas zakres2(0, 0, 5);
 
-	obrabiarka4 = obrabiarka1.kopiuj(8);
-	obrabiarka4.wypiszCzasy();
+	//cout << "Test kopiwoania 2 \n";
+	//Obrabiarka obrabiarka4 = obrabiarka1.kopiuj(zakres1);
+	//obrabiarka4.wypiszCzasy();
+	//obrabiarka4 = obrabiarka1.kopiuj(zakres2);
+	//obrabiarka4.wypiszCzasy();
 
-	czas1.wypiszCzas();
-	czas2.wypiszCzas();
+	//obrabiarka4 = obrabiarka1.kopiuj(8);
+	//obrabiarka4.wypiszCzasy();
+
+	//czas1.wypiszCzas();
+	//czas2.wypiszCzas();
+
+	//czas1.setCzas(0);
+	//czas1.wypiszCzas();
+	//czas1.setCzas(1, 4);
+	//czas1.wypiszCzas();
+	//czas1.setCzas(60, 9, 10);
+	//czas1.wypiszCzas();
+
+	//czas1 += 100;
+	//czas1.wypiszCzas();
+#pragma endregion
+
+	//Pêtla miniprogramu z czêœci 4. do sprawdzania funkcjonalnoœci kopiowania Obrabiarek - ETAP 4.4
+#pragma region PetlaProgramu
 
 	srand(time(0));
 
-	czas1.setCzas(0);
-	czas1.wypiszCzas();
-	czas1.setCzas(1, 4);
-	czas1.wypiszCzas();
-	czas1.setCzas(60, 9, 10);
-	czas1.wypiszCzas();
-
-	czas1 += 100;
-#pragma endregion
-
-#pragma region PetlaProgramu
 	Obrabiarka obrabiarkiMenu[iMaksymalnaLiczbaObrabiarek];
 	string sDeksryptory[iMaksymalnaLiczbaObrabiarek];
 	Czas cZakresCzasu;
+
 	int iIloscCzasow = losowaZakres(10, 20);
 	int iKrokProgramu = 0;
 	int i = 0;
 	int iIloscObrabiarek = 1;
 	int iWybranaObrabiarka = 0;
 	int iIloscCzasowDoWysw = 0;
+
 	bool bProgramOn = 1;
 
 	for (int i = 0; i < iIloscCzasow; i++)
@@ -177,19 +189,24 @@ int main(){
 				<< "2 - Wypisz czasy ktore zawieraja sie odpowiednim zakresie czasu" << endl
 				<< "3 - Wybierz zestawienie czasow (obrabiarke)" << endl
 				<< "4 - Zakoncz program" << endl;
+
 			cin >> iKrokProgramu;
 
 			if (iKrokProgramu < 0 || iKrokProgramu > 4) {
 				iKrokProgramu = 0;
 				cout << "Podaj prawidlowy numer funkcji." << endl;
 			}
+
 			if (iIloscObrabiarek >= iMaksymalnaLiczbaObrabiarek && (iKrokProgramu == 1 || iKrokProgramu == 2)) {
 				cout << "Osiagnieto maksymalna liczbe obrabiarek." << endl;
 				iKrokProgramu = 0;
 			}
+
 			break;
+
 		case 1:
-			cout << "Podaj ilosc n czasow do wyswietlenia. (Dozwolona negatywna subskrypcja)" << endl;
+
+			cout << "Podaj ilosc n czasow do wyswietlenia. (Dozwolona negatywna indeksacja)" << endl;
 			cin >> iIloscCzasowDoWysw;
 
 			obrabiarkiMenu[iIloscObrabiarek] = obrabiarkiMenu[iWybranaObrabiarka].kopiuj(iIloscCzasowDoWysw);
@@ -203,35 +220,39 @@ int main(){
 				iKrokProgramu = 0;
 				continue;
 			}
-			cout << flush;
-			system("cls");
 
 			break;
+
 		case 2:
+
 			int sekundy;
 			int minuty;
 			int godziny;
+			int iStaraObrabiarka;
+
 			cout << "Podaj liczbe godzin" << endl;
 			cin >> godziny;
 			cout << "Podaj liczbe minut" << endl;
 			cin >> minuty;
 			cout << "Podaj liczbe sekund" << endl;
 			cin >> sekundy;
+
 			cZakresCzasu.setCzas(sekundy,minuty,godziny);
 
 			obrabiarkiMenu[iIloscObrabiarek] = obrabiarkiMenu[iWybranaObrabiarka].kopiuj(cZakresCzasu);
+			iStaraObrabiarka = iWybranaObrabiarka;
 			iWybranaObrabiarka = iIloscObrabiarek;
 			++iIloscObrabiarek;
-			sDeksryptory[iWybranaObrabiarka] = "Kopia obrabiarki mieszczaca sie w zakresie " + to_string(cZakresCzasu.getGodziny()) + " godzin, "
+
+			sDeksryptory[iWybranaObrabiarka] = "Kopia obrabiarki " + to_string(iStaraObrabiarka) + " mieszczaca sie w zakresie " + to_string(cZakresCzasu.getGodziny()) + " godzin, "
 				+ to_string(cZakresCzasu.getMinuty()) + " minut i " + to_string(cZakresCzasu.getSekundy()) + " sekund.";
 
 			iKrokProgramu = 0;
 
-			cout << flush;
-			system("cls");
-
 			break;
+
 		case 3:
+
 			cout << "Wybierz obrabiarke z listy (wpisujac jej numer):" << endl;
 			for (i = 0; i < iIloscObrabiarek; i++) {
 				cout << "Obrabiarka " << i << " - " << sDeksryptory[i] << endl;
@@ -250,11 +271,16 @@ int main(){
 			}
 
 			break;
+
 		case 4:
+
 		case 100:
+
 			bProgramOn = 0;
 			break;
+
 		default:
+
 			break;
 		}
 	}
